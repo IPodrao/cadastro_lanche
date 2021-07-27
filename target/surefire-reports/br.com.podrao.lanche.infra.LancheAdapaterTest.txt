@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: br.com.podrao.lanche.infra.LancheAdapaterTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.187 s <<< FAILURE! - in br.com.podrao.lanche.infra.LancheAdapaterTest
-cadastrarLanche  Time elapsed: 0.463 s  <<< ERROR!
-java.lang.NullPointerException
-	at br.com.podrao.lanche.infra.LancheAdapaterTest.cadastrarLanche(LancheAdapaterTest.java:51)
-

@@ -1,6 +1,0 @@
-br\com\podrao\lanche\util\JsonCreator.class
-br\com\podrao\lanche\util\JsonCreator$JsonCreatorException.class
-br\com\podrao\lanche\app\LancheControllerTest.class
-br\com\podrao\lanche\util\JsonCreator$STATUS.class
-br\com\podrao\lanche\infra\LancheAdapaterTest.class
-br\com\podrao\lanche\core\LancheFacadeTest.class
