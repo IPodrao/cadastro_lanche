@@ -37,6 +37,7 @@ public class LancheEntity {
 	@Column(nullable = false)
 	private BigDecimal valor;
 	
+	@Getter(AccessLevel.NONE)
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<IngredienteEntity> ingredientes;
 	

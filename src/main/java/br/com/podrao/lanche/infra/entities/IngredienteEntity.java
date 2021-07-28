@@ -9,11 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
 @Table(name = "ingrediente")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class IngredienteEntity {

@@ -5,10 +5,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.mapstruct.factory.Mappers;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
-import br.com.podrao.lanche.core.exceptions.NaoExisteLancheComIdException;
 import br.com.podrao.lanche.core.models.command.AlterarLancheCommand;
 import br.com.podrao.lanche.core.models.command.ApagarLancheCommand;
 import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand;
@@ -40,27 +38,19 @@ public class LancheAdapter implements LancheDatabase {
 	@Transactional
 	public void apagarLanche(ApagarLancheCommand command) {
 
-		try {
-
-			ingredienteRepository.deleteByLancheId(command.getId());
-			lancheRepository.deleteById(command.getId());
-		} catch (EmptyResultDataAccessException e) {
-
-			throw new NaoExisteLancheComIdException(command.getId());
-		}
+		ingredienteRepository.deleteByLancheId(command.getId());
+		lancheRepository.deleteById(command.getId());
 	}
 
 	@Override
 	public LancheDto alterarLanche(AlterarLancheCommand command) {
 
 		LancheEntity lanche = lancheRepository.findById(command.getId()).orElseThrow();
-		
+
 		Optional.ofNullable(command.getNome()).ifPresent(lanche::atualizarNome);
 		Optional.ofNullable(command.getValor()).ifPresent(lanche::atualizarValor);
-		
+
 		return mapper.converter(lancheRepository.save(lanche));
 	}
-
-
 
 }

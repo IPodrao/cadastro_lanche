@@ -69,7 +69,7 @@ class LancheFacadeTest {
 		
 		AlterarLancheCommand command = new AlterarLancheCommand(1L, "Novo nome", BigDecimal.valueOf(27L));
 		
-		LancheDto lancheDto = new LancheDto(1L, "Novo nome", BigDecimal.valueOf(27L));
+		LancheDto lancheDto = new LancheDto(1L, "Novo nome", BigDecimal.valueOf(27L), 1L);
 		
 		doReturn(lancheDto).when(lancheDatabase).alterarLanche(any(AlterarLancheCommand.class));
 		
