@@ -13,7 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import br.com.podrao.lanche.core.models.command.ApagarLancheCommand;
 import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand;
+import br.com.podrao.lanche.core.ports.incoming.ApagarLanche;
 import br.com.podrao.lanche.core.ports.incoming.CadastrarLanche;
 import br.com.podrao.lanche.util.JsonCreator;
 
@@ -26,6 +28,9 @@ class LancheControllerTest {
 	
 	@MockBean
 	private CadastrarLanche cadastrarLanche;
+	
+	@MockBean
+	private ApagarLanche apagarLanche;
 
 	@Test
 	@DisplayName("Tenta cadastrar um lanche")
@@ -47,5 +52,14 @@ class LancheControllerTest {
 		.andExpect(status().isCreated());
 		
 		verify(cadastrarLanche).executar(any(CadastrarLancheCommand.class));
+	}
+	
+	@Test
+	@DisplayName("Tenta apagar um lanche")
+	void apagarUmLanche() throws Exception {
+		
+		this.mockMvc.perform(MockMvcRequestBuilders.delete("/lanche/1")).andExpect(status().isOk());
+		
+		verify(apagarLanche).executar(any(ApagarLancheCommand.class));
 	}
 }
