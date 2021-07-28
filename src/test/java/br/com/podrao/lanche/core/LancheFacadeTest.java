@@ -38,8 +38,8 @@ class LancheFacadeTest {
 		
 		// TODO: retornar DTO da infra
 
-		CadastrarLancheCommand command = new CadastrarLancheCommand("Cachorro quente", BigDecimal.valueOf(6l),
-				List.of(new CadastrarLancheIngredientes("Pão", 1), new CadastrarLancheIngredientes("Salsicha", 1)));
+		CadastrarLancheCommand command = new CadastrarLancheCommand("Cachorro quente", BigDecimal.valueOf(6l), 
+				List.of(new CadastrarLancheIngredientes("Pão", 1), new CadastrarLancheIngredientes("Salsicha", 1)), 1L);
 		
 		doReturn(1L).when(lancheDatabase).cadastrarLanche(any(CadastrarLancheCommand.class));
 

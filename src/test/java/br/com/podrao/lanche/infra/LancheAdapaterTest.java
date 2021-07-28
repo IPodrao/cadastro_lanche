@@ -43,7 +43,7 @@ class LancheAdapaterTest {
 	void cadastrarLanche() {
 		
 		CadastrarLancheCommand command = new CadastrarLancheCommand("Cachorro quente", BigDecimal.valueOf(6l),
-				List.of(new CadastrarLancheIngredientes("Pão", 1), new CadastrarLancheIngredientes("Salsicha", 1)));
+				List.of(new CadastrarLancheIngredientes("Pão", 1), new CadastrarLancheIngredientes("Salsicha", 1)), 1L);
 		
 		Long idLancheSalvo = lancheAdapter.cadastrarLanche(command);
 		
@@ -58,11 +58,12 @@ class LancheAdapaterTest {
 	@DisplayName("Tenta apagar um lanche")
 	void apagarLanche() {
 		
-		LancheEntity lancheEntity = new LancheEntity("Lanche 1", BigDecimal.valueOf(20));
+		LancheEntity lancheEntity = new LancheEntity("Lanche 1", BigDecimal.valueOf(20), 1L);
 		lancheEntity.getIngredientes().add(testEntityManager.persistAndFlush(new IngredienteEntity("Pão", 1)));
 		lancheEntity.getIngredientes().add(testEntityManager.persistAndFlush(new IngredienteEntity("Hamburguer", 1)));
 		
 		LancheEntity persistAndFlush = testEntityManager.persistAndFlush(lancheEntity);
+		testEntityManager.clear();
 		
 		ApagarLancheCommand command = new ApagarLancheCommand(persistAndFlush.getId());
 		

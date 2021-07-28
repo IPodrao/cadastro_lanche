@@ -21,6 +21,9 @@ public class CadastrarLancheRequest {
 	@NotEmpty
 	private Collection<IngredienteRequest> ingredientes;
 	
+	@NotNull
+	private Long carrinhoId;
+	
 	@Getter
 	public static class IngredienteRequest {
 	

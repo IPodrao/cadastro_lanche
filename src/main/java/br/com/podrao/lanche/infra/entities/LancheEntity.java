@@ -36,9 +36,13 @@ public class LancheEntity {
 	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<IngredienteEntity> ingredientes = new ArrayList<>();
+	
+	@Column(nullable = false)
+	private Long carrinhoId;
 
-	public LancheEntity(String nome, BigDecimal valor) {
+	public LancheEntity(String nome, BigDecimal valor, Long carrinhoId) {
 		this.nome = nome;
 		this.valor = valor;
+		this.carrinhoId = carrinhoId;
 	}
 }

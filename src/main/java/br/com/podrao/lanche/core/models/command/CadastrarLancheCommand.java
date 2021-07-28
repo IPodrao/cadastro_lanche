@@ -13,6 +13,7 @@ public class CadastrarLancheCommand {
 	private String nome;
 	private BigDecimal valor;
 	private Collection<CadastrarLancheIngredientes> ingredientes;
+	private Long carrinhoId;
 	
 	@Getter
 	@AllArgsConstructor

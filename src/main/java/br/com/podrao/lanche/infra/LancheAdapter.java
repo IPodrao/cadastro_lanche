@@ -34,7 +34,7 @@ public class LancheAdapter implements LancheDatabase {
 
 		try {
 
-			lancheRepository.deleteById(command.getId() + 1);
+			lancheRepository.deleteById(command.getId());
 		} catch (EmptyResultDataAccessException e) {
 
 			throw new NaoExisteLancheComIdException(command.getId());

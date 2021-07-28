@@ -17,6 +17,7 @@ import br.com.podrao.lanche.core.models.command.ApagarLancheCommand;
 import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand;
 import br.com.podrao.lanche.core.ports.incoming.ApagarLanche;
 import br.com.podrao.lanche.core.ports.incoming.CadastrarLanche;
+import br.com.podrao.lanche.core.ports.incoming.ObterLanche;
 import br.com.podrao.lanche.util.JsonCreator;
 
 @DisplayName("App: Lanche")
@@ -31,6 +32,9 @@ class LancheControllerTest {
 	
 	@MockBean
 	private ApagarLanche apagarLanche;
+	
+	@MockBean
+	private ObterLanche obterLanche;
 
 	@Test
 	@DisplayName("Tenta cadastrar um lanche")
@@ -40,6 +44,7 @@ class LancheControllerTest {
 				.content(JsonCreator.startJson()
 						.name("nome").value("Enourmous Mac")
 						.name("valor").value(23)
+						.name("carrinhoId").value(1)
 						.name("ingredientes").listValue(
 								"[{\"nome\":\"Hamburguer\", \"quantidade\": 2},"
 								+ "{\"nome\":\"Alface\", \"quantidade\": 1},"
