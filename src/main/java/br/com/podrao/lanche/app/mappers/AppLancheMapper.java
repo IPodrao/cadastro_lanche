@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import br.com.podrao.lanche.app.models.CadastrarLancheRequest;
 import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AppLancheMapper {
 
 	CadastrarLancheCommand converter(CadastrarLancheRequest source);

@@ -17,9 +17,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import br.com.podrao.lanche.core.models.command.AlterarLancheCommand;
 import br.com.podrao.lanche.core.models.command.ApagarLancheCommand;
 import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand;
 import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand.CadastrarLancheIngredientes;
+import br.com.podrao.lanche.core.models.command.LancheDto;
 import br.com.podrao.lanche.core.ports.outoging.LancheDatabase;
 
 @DisplayName("Core: Lanche")
@@ -58,6 +60,21 @@ class LancheFacadeTest {
 		
 		assertDoesNotThrow(() -> lancheFacade.executar(command));
 		
-		verify(lancheDatabase, times(1)).apagarLanche(any(ApagarLancheCommand.class));
+		verify(lancheDatabase).apagarLanche(any(ApagarLancheCommand.class));
+	}
+	
+	@Test
+	@DisplayName("Tenta alterar lanche")
+	void alterarLanche() {
+		
+		AlterarLancheCommand command = new AlterarLancheCommand(1L, "Novo nome", BigDecimal.valueOf(27L));
+		
+		LancheDto lancheDto = new LancheDto(1L, "Novo nome", BigDecimal.valueOf(27L));
+		
+		doReturn(lancheDto).when(lancheDatabase).alterarLanche(any(AlterarLancheCommand.class));
+		
+		assertDoesNotThrow(() -> lancheFacade.executar(command));
+		
+		verify(lancheDatabase).alterarLanche(any(AlterarLancheCommand.class));
 	}
 }

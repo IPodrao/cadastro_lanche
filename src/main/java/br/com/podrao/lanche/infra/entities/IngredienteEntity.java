@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -27,8 +28,16 @@ public class IngredienteEntity {
 	@Column(nullable = false)
 	private Integer quantidade;
 	
+	@ManyToOne(optional = false)
+	private LancheEntity lanche;
+	
 	public IngredienteEntity(String nome, Integer quantidade) {
 		this.nome = nome;
 		this.quantidade = quantidade;
+	}
+	
+	public void definirLanche(LancheEntity lanche) {
+		
+		this.lanche = lanche;
 	}
 }
