@@ -20,6 +20,7 @@ import br.com.podrao.lanche.core.models.command.CadastrarLancheCommand.Cadastrar
 import br.com.podrao.lanche.core.models.command.LancheDto;
 import br.com.podrao.lanche.infra.entities.IngredienteEntity;
 import br.com.podrao.lanche.infra.entities.LancheEntity;
+import br.com.podrao.lanche.infra.repositories.IngredienteRepository;
 import br.com.podrao.lanche.infra.repositories.LancheRepository;
 
 @DataJpaTest
@@ -31,13 +32,16 @@ class LancheAdapaterTest {
 
 	@Autowired
 	private LancheRepository lancheRepository;
+	
+	@Autowired
+	private IngredienteRepository ingredienteRepository;
 
 	private LancheAdapter lancheAdapter;
 
 	@BeforeEach
 	void setup() {
 
-		this.lancheAdapter = new LancheAdapter(lancheRepository);
+		this.lancheAdapter = new LancheAdapter(lancheRepository, ingredienteRepository);
 	}
 
 	@Test

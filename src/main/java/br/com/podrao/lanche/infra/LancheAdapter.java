@@ -16,6 +16,7 @@ import br.com.podrao.lanche.core.models.command.LancheDto;
 import br.com.podrao.lanche.core.ports.outoging.LancheDatabase;
 import br.com.podrao.lanche.infra.entities.LancheEntity;
 import br.com.podrao.lanche.infra.mappers.InfraLancheMapper;
+import br.com.podrao.lanche.infra.repositories.IngredienteRepository;
 import br.com.podrao.lanche.infra.repositories.LancheRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class LancheAdapter implements LancheDatabase {
 
 	private final LancheRepository lancheRepository;
+	private final IngredienteRepository ingredienteRepository;
 
 	private InfraLancheMapper mapper = Mappers.getMapper(InfraLancheMapper.class);
 
@@ -35,10 +37,12 @@ public class LancheAdapter implements LancheDatabase {
 	}
 
 	@Override
+	@Transactional
 	public void apagarLanche(ApagarLancheCommand command) {
 
 		try {
 
+			ingredienteRepository.deleteByLancheId(command.getId());
 			lancheRepository.deleteById(command.getId());
 		} catch (EmptyResultDataAccessException e) {
 

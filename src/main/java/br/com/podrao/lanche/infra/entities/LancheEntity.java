@@ -53,6 +53,8 @@ public class LancheEntity {
 		this.valor = valor;
 		this.carrinhoId = carrinhoId;
 		this.ingredientes = ingredientes;
+		
+		ingredientes.forEach(ingrediente -> ingrediente.definirLanche(this));
 	}
 	
 	public LancheEntity adicionarIngrediente(IngredienteEntity ingrediente) {
