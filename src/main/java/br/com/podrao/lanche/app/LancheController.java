@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/lanche")
-public class LancheController {
+public class LancheController implements LancheControllerOpenApi {
 
 	private final CadastrarLanche cadastraraLanche;
 	private final ApagarLanche apagarLanche;

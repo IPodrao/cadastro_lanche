@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -30,6 +31,11 @@ import br.com.podrao.lanche.util.JsonCreator;
 @AutoConfigureMockMvc
 @ContextConfiguration
 @SuppressWarnings("rawtypes")
+@TestPropertySource(properties = {
+	    "app.description=descricao",
+	    "app.name=nome",
+	    "app.version=versão"
+	})
 class IntegracaoBancoDeDadosTest {
 
 	@Container
@@ -40,7 +46,7 @@ class IntegracaoBancoDeDadosTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-
+	
 	@BeforeEach
 	void setup() {
 
