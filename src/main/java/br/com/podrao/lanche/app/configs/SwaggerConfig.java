@@ -30,13 +30,6 @@ public class SwaggerConfig implements WebMvcConfigurer {
 		model = new MavenXpp3Reader().read(new FileReader("pom.xml"));
 	}
 
-//	@Bean
-//	public Docket api() {
-//		return new Docket(DocumentationType.SWAGGER_2).groupName("users-public-api").select()
-//				.apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build().pathMapping("/")
-//				.enableUrlTemplating(false);
-//	}
-
 	@Bean
 	public Docket productApi() {
 
